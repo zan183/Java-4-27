@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- 	默认命名空间 ,注意拦截器顺序，单独的拦截器不能用，必须放在interceptors包里面-->
+	<package name="sec"  extends="struts-default" namespace="/sec">
+		<interceptors>
+			<interceptor name="interceptor1" class="interceptor.sec.Myinterceptor"/>
+			<interceptor-stack name="Stack">
+			  	 <interceptor-ref name="interceptor1"> </interceptor-ref>
+			 	 <interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+<!-- 		<default-interceptor-ref name="default"/> -->
+		<global-results>
+			<result name="login">/interceptor_login.jsp</result>
+		</global-results>
+		
+		<!-- 拦截器栈-->
+		<action name="interceptor_stack" class="no1.Reg">
+			<interceptor-ref name="Stack"></interceptor-ref>
+			<result>/interceptor_suc.jsp</result>
+		</action>
+	</package>
+</struts>

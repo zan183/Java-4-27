@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- 	开发模式下使用，这样可以打印出更详细的错误信息。 -->
+   <constant name="struts.devMode" value="true"/>
+	<!--    struts.custom.i18n.resources 用来定义 i18n 支持.  -->
+   <constant name="struts.custom.i18n.resources" value="global"/>
+<package name="default" extends="struts-default">
+    <action name="checkByObj" class="no1.checkLoginByObj">
+	<result>/success.jsp</result>
+	<result name="input">/login.jsp</result>
+	<result name="fail">/fail.jsp</result>
+	</action>
+	
+	<action name="checkLogin" class="no1.CheckLogin">
+		<result name="suc">/success.jsp</result>
+		<result name="fail">/fail.jsp</result>
+	</action>
+	<action name="Compute" class="no1.ComputeAction">
+		<result type="redirect">/Output.jsp</result>
+	</action>
+	<action name="Logout" class="no1.Logout">
+		<result name="suc" type="redirect">/login.jsp</result>
+	</action>
+	<action name="Username" class="no1.CheckLogin" method="good">
+		<result name="nl">/good.jsp</result>
+	</action>
+	<action name="show" class="no1.Showallstu">
+		<result>/show.jsp</result>
+	</action>
+		<action name="show2" class="no1.Showallstu2">
+		<result>/show2.jsp</result>
+	</action>
+	<action name="LoginI18N" class="no1.LoginI18N">
+	   	<result name="input,fail">/loginI18n.jsp</result>	
+	   	<result name="redirect" type="redirect">/loginI18N_success.jsp</result>
+	   	<result name="forward">/loginI18N_success.jsp</result>
+	</action>
+	<action name="ShowLocs" class="no1.ShowLocal">
+		<result>/showlocs.jsp</result>
+	</action>
+</package>
+	<include file="config/config.xml" />
+	<include file="interceptor/Reg.xml" />
+	<include file="interceptor/sec/sec.xml"/>
+	<include file="ex.xml"/>
+	<include file="interceptor/endWith/sec1.xml"/>
+</struts>
